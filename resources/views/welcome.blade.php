@@ -89,7 +89,12 @@
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="active"><a href="{{route('reddit.login', 'reddit')}}"><span>Login</span></a></li>
+                        @auth
+                            <li class="active"><a href="{{route('dashboard')}}"><span>Dashboard</span></a></li>
+                        @endauth
+                        @guest
+                            <li class="active"><a href="{{route('reddit.login', 'reddit')}}"><span>Login</span></a></li>
+                        @endguest
                     </ul>
                 </div>
             </nav>
