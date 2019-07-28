@@ -43,8 +43,9 @@ class LoginController extends Controller
         $user = User::where('username', $oauthUser->nickname)->first();
         if ($user === null) {  //If user doesn't exist
             $user = new User();
-            $user->role_id = 1;
             $user->username = $oauthUser->nickname;
+            $user->role_id = 1;
+            $user->api_token = Str::random(80);
             $user->save();
         } else {
             $user->api_token = Str::random(80);
