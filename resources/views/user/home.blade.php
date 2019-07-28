@@ -11,7 +11,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">My Balance</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">100 ICX</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$balance}} ICX</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -26,7 +26,8 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Tips</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">20 ICX (5)</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$tipsAmount}} ICX ({{$tipsCount}})
+                            </div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
@@ -36,23 +37,28 @@
             </div>
         </div>
         <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-info shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Deposits (total)</div>
-                            <div class="row no-gutters align-items-center">
-                                <div class="col-auto">
-                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">2000 ICX (2)</div>
+            <a href="{{route('dashboard.deposit.show')}}">
+                <div class="card border-left-info shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Deposits (total)
+                                </div>
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col-auto">
+                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{$depositedAmount}}ICX
+                                            ({{$depositsCount}})
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-arrow-down fa-2x text-gray-300"></i>
+                            <div class="col-auto">
+                                <i class="fas fa-arrow-down fa-2x text-gray-300"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </a>
         </div>
 
         <!-- Pending Requests Card Example -->
@@ -63,7 +69,9 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Withdrawals (total)
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">1000 ICX (1)</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$withdrawnAmount}} ICX
+                                ({{$withdrawsCount}})
+                            </div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-arrow-up fa-2x text-gray-300"></i>
@@ -87,6 +95,7 @@
                     <table class="table table-bordered" id="dataTable">
                         <thead>
                         <tr>
+                            <th>Tx</th>
                             <th>Type</th>
                             <th>From</th>
                             <th>To</th>
@@ -95,6 +104,7 @@
                         </thead>
                         <tfoot>
                         <tr>
+                            <th>Tx</th>
                             <th>Type</th>
                             <th>From</th>
                             <th>To</th>
@@ -102,18 +112,15 @@
                         </tr>
                         </tfoot>
                         <tbody>
-                        <tr>
-                            <td>Deposit</td>
-                            <td>hx18282818182818182818281828182818281828</td>
-                            <td>hx18282818182818182818281828182818281828</td>
-                            <td>2011/04/25</td>
-                        </tr>
-                        <tr>
-                            <td>Tip</td>
-                            <td>hx18282818182818182818281828182818281828</td>
-                            <td>hx18282818182818182818281828182818281828</td>
-                            <td>2011/04/25</td>
-                        </tr>
+                        @foreach($transactions as $transaction)
+                            <tr>
+                                <td>{{$transaction->id}}</td>
+                                <td>{{$transaction->type}}</td>
+                                <td>{{$transaction->from->public_address}}</td>
+                                <td>{{$transaction->to->public_address}}</td>
+                                <td>{{$transaction->date}}</td>
+                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>

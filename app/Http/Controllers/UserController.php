@@ -14,7 +14,24 @@ class UserController extends Controller
 
     public function home()
     {
-        return view('user.home');
+        $transactions = Auth::user()->transactions()->with('from', 'to')->get();
+
+        $tips = $transactions->where('type', 'tip');
+        $tipsCount = $tips->count();
+        $tipsAmount = $tips->sum('amount');
+
+        $deposits = $transactions->where('type', 'deposit');
+        $depositsCount = $deposits->count();
+        $depositedAmount = $deposits->sum('amount');
+
+        $withdraws = $transactions->where('type', 'withdraw');
+        $withdrawsCount = $withdraws->count();
+        $withdrawnAmount = $withdraws->sum('amount');
+
+        //TODO tip sender and receiver differentiation
+        $balance = Auth::user()->wallets()->sum('balance');
+
+        return view('user.home', compact('transactions', 'depositsCount', 'depositedAmount', 'withdrawsCount', 'withdrawnAmount', 'tipsCount', 'tipsAmount', 'balance'));
     }
 
     public function showDeposit()

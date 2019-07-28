@@ -19,6 +19,7 @@ class CreateWalletsTable extends Migration
             $table->string('private_key',1000)->nullable();
             $table->string('public_key',1000)->nullable();
             $table->string('public_address',100);
+            $table->float('balance')->default(0);
             $table->timestamps();
         });
     }
