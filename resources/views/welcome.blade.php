@@ -85,7 +85,7 @@
                 <div class="navbar-header">
 
                     <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
-                    <a class="navbar-brand" href="{{route('dashboard')}}">ICONation Reddit Tip Bot</a>
+                    <a class="navbar-brand" href="{{route('dashboard')}}">ICONation</a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -108,8 +108,8 @@
                 <div class="text-inner">
                     <div class="row">
                         <div class="col-md-8 col-md-offset-2">
-                            <h1 class="to-animate iconation_title fadeInUp animated">ICONation</h1>
-                            <h2 class="to-animate iconation_title fadeInUp animated">By ICONists, for ICONists.</h2>
+                            <h1 class="to-animate iconation_title fadeInUp animated">ICONation Reddit Tipper</h1>
+                            <h2 class="to-animate iconation_title fadeInUp animated">Tip reddit users, using ICX</h2>
                         </div>
                     </div>
                 </div>
