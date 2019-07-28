@@ -38,10 +38,10 @@ class User extends Authenticatable
     ];
 
     public function wallets(){
-        return $this->hasMany('App/Wallet');
+        return $this->hasMany('App\Wallet');
     }
 
     public function transactions(){
-        return $this->hasMany('App/Transaction');
+        return $this->hasMany('App\Transaction');
     }
 }

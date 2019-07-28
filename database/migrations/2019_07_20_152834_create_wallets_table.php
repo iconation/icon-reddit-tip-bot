@@ -16,9 +16,9 @@ class CreateWalletsTable extends Migration
         Schema::create('wallets', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->nullable();
-            $table->string('private_key')->nullable();
-            $table->string('public_key')->nullable();
-            $table->string('public_address')->nullable();
+            $table->string('private_key',1000)->nullable();
+            $table->string('public_key',1000)->nullable();
+            $table->string('public_address',100);
             $table->timestamps();
         });
     }

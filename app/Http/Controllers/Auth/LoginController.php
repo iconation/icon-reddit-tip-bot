@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\User;
+use App\Wallet;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Laravel\Socialite\Facades\Socialite;
+use mitsosf\IconSDK\Wallet as WalletGenerator;
 
 class LoginController extends Controller
 {
@@ -46,6 +48,14 @@ class LoginController extends Controller
             $user->role_id = 1;
             $user->api_token = Str::random(80);
             $user->save();
+
+            $generatedWallet = new WalletGenerator();
+            $wallet = new Wallet();
+            $wallet->user_id = $user->id;
+            $wallet->private_key = encrypt($generatedWallet->getPrivateKey());
+            $wallet->public_key = encrypt($generatedWallet->getPublicKey());
+            $wallet->public_address = $generatedWallet->getPublicAddress();
+            $wallet->save();
         } else {
             $user->api_token = Str::random(80);
             $user->update();

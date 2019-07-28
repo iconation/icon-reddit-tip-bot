@@ -15,10 +15,11 @@ class CreateTransactionsTable extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('sender_id');
-            $table->bigInteger('receiver_id');
+            $table->string('type')->nullable();
+            $table->bigInteger('user_id')->nullable();
             $table->bigInteger('from_id');
             $table->bigInteger('to_id');
+            $table->float('amount')->nullable();
             $table->timestamps();
         });
     }

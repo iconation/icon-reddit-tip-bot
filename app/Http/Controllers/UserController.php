@@ -19,7 +19,9 @@ class UserController extends Controller
 
     public function showDeposit()
     {
-        return 'Deposit';
+        $address = Auth::user()->wallets()->get()->first()->public_address;
+        $deposits = Auth::user()->transactions()->where('type', 'deposit')->with('from', 'to')->get();
+        return view('user.deposit', compact('address', 'deposits'));
     }
 
     public function showWithdraw()
