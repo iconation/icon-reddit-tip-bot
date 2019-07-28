@@ -43,7 +43,7 @@ class UserController extends Controller
 
     public function showWithdraw()
     {
-        return 'Withdraw';
+        return view('user.withdraw');
     }
 
     public function deposit()
@@ -58,7 +58,7 @@ class UserController extends Controller
 
     public function settings()
     {
-        return 'Settings';
+        return view('user.settings');
     }
 
     public function logout()
