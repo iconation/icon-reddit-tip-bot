@@ -11,8 +11,16 @@
 |
 */
 
+// OAuth Routes
+Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider')->name('reddit.login');
+Route::get('auth/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
+
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
+
+//User routes
+Route::get('/dashboard','UserController@home')->name('dashboard');
+Route::get('/dashboard/logout','UserController@logout')->name('user.logout');
 
 Route::get('/address/create','AddressController@createAddress');

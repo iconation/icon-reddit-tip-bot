@@ -62,38 +62,60 @@
                 margin-bottom: 30px;
             }
         </style>
+        <link rel="stylesheet" href="https://iconation.team/css/leaflet.css" />
+        <link rel="stylesheet" href="https://iconation.team/css/animate.css">
+        <link rel="stylesheet" href="https://iconation.team/css/icomoon.css">
+        <link rel="stylesheet" href="https://iconation.team/css/simple-line-icons.css">
+        <link rel="stylesheet" href="https://iconation.team/css/magnific-popup.css">
+        <link rel="stylesheet" href="https://iconation.team/css/bootstrap.css">
+        <link rel="stylesheet" href="https://iconation.team/css/style4.css">
+        <script src="https://code.iconify.design/1/1.0.0-rc7/iconify.min.js"></script>
+        <link rel="stylesheet" href="https://iconation.team/css/custom1.css">
+        <link rel="stylesheet" href="https://iconation.team/css/custom2.css">
+        <script src="https://iconation.team/js/modernizr-2.6.2.min.js"></script>
+
+
+
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
+    <header role="banner" id="fh5co-header" class="">
+        <div class="container">
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
+            <nav class="navbar navbar-default">
+                <div class="navbar-header">
+
+                    <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
+                    <a class="navbar-brand" href="{{route('dashboard')}}">ICONation Reddit Tip Bot</a>
                 </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="active"><a href="{{route('reddit.login', 'reddit')}}"><span>Login</span></a></li>
+                    </ul>
                 </div>
+            </nav>
+        </div>
+    </header>
+    <section id="fh5co-home" data-section="home" data-stellar-background-ratio="0.5" class="animated" style="background-position: 0 0;">
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+        <div class="gradient video-container">
+            <video playsinline="" autoplay="" muted="" loop="" poster="https://iconation.team/images/flag_static.png" id="bgvideo" width="x" height="y">
+                <source src="https://iconation.team/video/ICONation.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <div class="container">
+            <div class="text-wrap">
+                <div class="text-inner">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <h1 class="to-animate iconation_title fadeInUp animated">ICONation</h1>
+                            <h2 class="to-animate iconation_title fadeInUp animated">By ICONists, for ICONists.</h2>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+        <div class="slant"></div>
+    </section>
     </body>
 </html>
