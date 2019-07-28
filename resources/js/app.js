@@ -16,6 +16,15 @@ window.Vue = require('vue');
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 
+require('../../node_modules/startbootstrap-sb-admin-2/vendor/jquery/jquery.min');
+require('../../node_modules/startbootstrap-sb-admin-2/vendor/jquery-easing/jquery.easing.min');
+require('../../node_modules/startbootstrap-sb-admin-2/vendor/bootstrap/js/bootstrap.min');
+require('../../node_modules/startbootstrap-sb-admin-2/vendor/chart.js/Chart.min');
+require('../../node_modules/startbootstrap-sb-admin-2/vendor/datatables/jquery.dataTables.min');
+require('../../node_modules/startbootstrap-sb-admin-2/js/demo/datatables-demo');
+require('../../node_modules/startbootstrap-sb-admin-2/js/sb-admin-2.min');
+
+
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 

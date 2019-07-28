@@ -12,27 +12,38 @@ class UserController extends Controller
         $this->middleware('auth.user');
     }
 
-    public function home(){
+    public function home()
+    {
         return view('user.home');
     }
 
-    public function showDeposit(){
+    public function showDeposit()
+    {
+        return 'Deposit';
+    }
+
+    public function showWithdraw()
+    {
+        return 'Withdraw';
+    }
+
+    public function deposit()
+    {
 
     }
 
-    public function showWithdraw(){
+    public function withdraw()
+    {
 
     }
 
-    public function deposit(){
-
+    public function settings()
+    {
+        return 'Settings';
     }
 
-    public function withdraw(){
-
-    }
-
-    public function logout(){
+    public function logout()
+    {
         Auth::logout();
         return redirect(route('home'));
     }

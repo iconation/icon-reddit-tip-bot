@@ -21,6 +21,9 @@ Route::get('/', function () {
 
 //User routes
 Route::get('/dashboard','UserController@home')->name('dashboard');
+Route::get('/dashboard/deposit','UserController@showDeposit')->name('dashboard.deposit.show');
+Route::get('/dashboard/withdraw','UserController@showWithdraw')->name('dashboard.withdraw.show');
+Route::get('/dashboard/settings','UserController@settings')->name('dashboard.settings');
 Route::get('/dashboard/logout','UserController@logout')->name('user.logout');
 
 Route::get('/address/create','AddressController@createAddress');
