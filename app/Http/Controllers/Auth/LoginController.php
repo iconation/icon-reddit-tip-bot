@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\User;
+use http\Exception;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -31,26 +32,28 @@ class LoginController extends Controller
 
     public function handleProviderCallback($provider)
     {
+        //If user doesn't grant permissions
+        if (request()->get('error') === 'access_denied') {
+            return redirect(route('home'));
+        }
+
         $oauthUser = Socialite::driver($provider)->user();
 
-            //Check if user exists
+        //Check if user exists
         $user = User::where('username', $oauthUser->nickname)->first();
-
         if ($user === null) {  //If user doesn't exist
             $user = new User();
             $user->role_id = 1;
             $user->username = $oauthUser->nickname;
-            $user->email = $oauthUser->email;
             $user->save();
-        }
-        else{
+        } else {
             $user->api_token = Str::random(80);
             $user->update();
         }
 
         Auth::login($user);
 
-        return redirect()->route('dashboard');
+        return redirect(route('dashboard'));
     }
 
     /**
