@@ -20,7 +20,7 @@
                         @enderror
                         <input id="amount" name="amount" class="form-control" placeholder="Amount in ICX (use . for decimal point)"
                                style="margin-bottom: 3%">
-                        <p style="font-size: 12px;color: red;">Avail. balance: {{$maxAmount-0.001}} ICX</p>
+                        <p style="font-size: 12px;color: red;">Avail. balance: {{$maxAmount-0.001 < 0 ? 0 : $maxAmount-0.001}} ICX</p>
                         @csrf
                         @error('amount')
                         <div class="alert alert-danger">{{ $message }}</div>
