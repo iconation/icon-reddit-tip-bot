@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Rules\ValidAddress;
+use App\Rules\ValidWithdrawAmount;
 use App\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use mitsosf\IconSDK\IconService;
+use mitsosf\IconSDK\Wallet;
 
 class UserController extends Controller
 {
@@ -50,25 +53,37 @@ class UserController extends Controller
 
     public function showWithdraw()
     {
+        $maxAmount = floatval(Auth::user()->wallets()->get()->first()->balance);
         $withdraws = Auth::user()->transactions()->where('type', 'withdraw')->with('to')->get();
-        return view('user.withdraw', compact('withdraws'));
-    }
-
-    public function deposit()
-    {
-        //Do deposit logic
+        return view('user.withdraw', compact('withdraws', 'maxAmount'));
     }
 
     public function withdraw(Request $request)
     {
         $request->validate([
-            'address' => ['required', new ValidAddress()]
+            'address' => ['required', new ValidAddress()],
+            'amount' => ['required', new ValidWithdrawAmount()]
         ]);
 
         //Do withdraw logic
+        $wallet = Auth::user()->wallets()->get()->first();
+        $privateKey = $wallet->getPrivateKey();
+        $localAddress = $wallet->publicAddress;
+        $destinationAddress = $request->get('address');
 
-        Session::flash('success', $request->get('address'));
-        return redirect(route('dashboard.withdraw'));
+        $iconService = new IconService(env('ICONSERVICE_URL_TESTNET'));
+        $amount = $iconService->icxToHex(floatval($request->get('amount')));
+
+        $result = $iconService->send($localAddress, $destinationAddress, $amount, "0x186a0",$privateKey, env('ICON_YEOUIDO_NID'));
+        if(!isset($result->error)){
+            //TODO get result, save transaction and update wallet balance
+            Session::flash('success', $request->get('address'));
+            return redirect(route('dashboard.withdraw'));
+        }else{
+            Session::flash('error', $request->get('address'));
+            return redirect(route('dashboard.withdraw'));
+        }
+
     }
 
     public function settings()

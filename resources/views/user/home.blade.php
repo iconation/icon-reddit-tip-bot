@@ -30,7 +30,7 @@
                             </div>
                         </div>
                         <div class="col-auto">
-                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                            <i class="fas fa-coins fa-2x text-gray-300"></i>
                         </div>
                     </div>
                 </div>
@@ -46,8 +46,7 @@
                                 </div>
                                 <div class="row no-gutters align-items-center">
                                     <div class="col-auto">
-                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{$depositedAmount}}ICX
-                                            ({{$depositsCount}})
+                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{$depositedAmount}} ICX
                                         </div>
                                     </div>
                                 </div>
@@ -69,9 +68,7 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Withdrawals (total)
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$withdrawnAmount}} ICX
-                                ({{$withdrawsCount}})
-                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$withdrawnAmount}} ICX</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-arrow-up fa-2x text-gray-300"></i>
@@ -114,7 +111,7 @@
                         <tbody>
                         @foreach($transactions as $transaction)
                             <tr>
-                                <td>{{$transaction->id}}</td>
+                                <td><a href="{{route('dashboard.transaction', $transaction)}}">{{$transaction->id}}</a></td>
                                 <td>{{$transaction->type}}</td>
                                 <td>{{$transaction->from->public_address}}</td>
                                 <td>{{$transaction->to->public_address}}</td>

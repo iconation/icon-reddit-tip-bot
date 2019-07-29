@@ -18,6 +18,13 @@
                         @error('address')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
+                        <input id="amount" name="amount" class="form-control" placeholder="Amount in ICX (use . for decimal point)"
+                               style="margin-bottom: 3%">
+                        <p style="font-size: 12px;color: red;">Avail. balance: {{$maxAmount-0.001}} ICX</p>
+                        @csrf
+                        @error('amount')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                         @if(Session::has('success'))
                             <div class="alert alert-success">You have successfully withdrawn funds to {{Session::get('success')}}!</div>
                         @endif
