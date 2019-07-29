@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "8d0c2e3b802f55213fe0670c855a4f07",
+    "content-hash": "ab9c62b678d6dfdb0eba0a325deea5a1",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -613,16 +613,16 @@
         },
         {
             "name": "iconation/icon-sdk-php",
-            "version": "v0.1.3",
+            "version": "v0.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/iconation/icon-sdk-php.git",
-                "reference": "c1fa22c1a5bed344aaa19c2972e6407d78102b6a"
+                "reference": "9ca1aa786b3a368cc5ba1e14d865360b283d8e89"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/iconation/icon-sdk-php/zipball/c1fa22c1a5bed344aaa19c2972e6407d78102b6a",
-                "reference": "c1fa22c1a5bed344aaa19c2972e6407d78102b6a",
+                "url": "https://api.github.com/repos/iconation/icon-sdk-php/zipball/9ca1aa786b3a368cc5ba1e14d865360b283d8e89",
+                "reference": "9ca1aa786b3a368cc5ba1e14d865360b283d8e89",
                 "shasum": ""
             },
             "require": {
@@ -656,7 +656,7 @@
                 "icon",
                 "icx"
             ],
-            "time": "2019-07-29T07:06:25+00:00"
+            "time": "2019-07-29T12:19:05+00:00"
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -5437,7 +5437,8 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.1.3"
+        "php": "^7.1.3",
+        "ext-json": "*"
     },
     "platform-dev": []
 }

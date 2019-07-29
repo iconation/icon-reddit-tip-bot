@@ -4,6 +4,7 @@ namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
+use mitsosf\IconSDK\IconService;
 
 class ValidWithdrawAmount implements Rule
 {
@@ -31,7 +32,11 @@ class ValidWithdrawAmount implements Rule
         }
         $value = floatval($value);
         $transactionFee = 0.001;
-        $maxAmount = floatval(Auth::user()->wallets()->get()->first()->balance)-$transactionFee;
+
+        $iconservice = new IconService(env('ICONSERVICE_URL_TESTNET'));
+        $balance = $iconservice->hexToIcx($iconservice->icx_getBalance(Auth::user()->wallets()->first()->public_address)->result);
+
+        $maxAmount = $balance-$transactionFee;
         if ($value <= 0 || $value > $maxAmount) {
             return false;
         }
