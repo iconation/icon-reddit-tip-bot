@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Rules\ValidAddress;
 use App\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
@@ -54,12 +56,19 @@ class UserController extends Controller
 
     public function deposit()
     {
-
+        //Do deposit logic
     }
 
-    public function withdraw()
+    public function withdraw(Request $request)
     {
-        return 'Withdraw completed';
+        $request->validate([
+            'address' => ['required', new ValidAddress()]
+        ]);
+
+        //Do withdraw logic
+
+        Session::flash('success', $request->get('address'));
+        return redirect(route('dashboard.withdraw'));
     }
 
     public function settings()
