@@ -45,7 +45,7 @@
                         <tbody>
                         @foreach($deposits as $deposit)
                             <tr>
-                                <td>{{$deposit->id}}</td>
+                                <td><a href="{{route('dashboard.transaction', $deposit)}}">{{$deposit->id}}</a></td>
                                 <td>{{$deposit->from->public_address}}</td>
                                 <td>{{$deposit->to->public_address}}</td>
                                 <td>{{$deposit->amount}} ICX</td>

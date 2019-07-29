@@ -19,6 +19,7 @@ class CreateTransactionsTable extends Migration
             $table->bigInteger('user_id')->nullable();
             $table->bigInteger('from_id');
             $table->bigInteger('to_id');
+            $table->string('tx_hash',500);
             $table->float('amount')->nullable();
             $table->timestamps();
         });

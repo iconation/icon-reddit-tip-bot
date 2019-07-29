@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -34,6 +35,10 @@ class UserController extends Controller
         return view('user.home', compact('transactions', 'depositsCount', 'depositedAmount', 'withdrawsCount', 'withdrawnAmount', 'tipsCount', 'tipsAmount', 'balance'));
     }
 
+    public function transaction(Transaction $transaction){
+        return view('user.transaction', compact('transaction'));
+    }
+
     public function showDeposit()
     {
         $address = Auth::user()->wallets()->get()->first()->public_address;
@@ -43,7 +48,8 @@ class UserController extends Controller
 
     public function showWithdraw()
     {
-        return view('user.withdraw');
+        $withdraws = Auth::user()->transactions()->where('type', 'withdraw')->with('to')->get();
+        return view('user.withdraw', compact('withdraws'));
     }
 
     public function deposit()
@@ -53,7 +59,7 @@ class UserController extends Controller
 
     public function withdraw()
     {
-
+        return 'Withdraw completed';
     }
 
     public function settings()
