@@ -16,6 +16,7 @@ class CreateTransactionsTable extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('type')->nullable();
+            $table->bigInteger('user_id');
             $table->bigInteger('from_id');
             $table->bigInteger('to_id');
             $table->string('tx_hash',500);
