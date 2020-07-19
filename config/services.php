@@ -44,4 +44,10 @@ return [
         ],
     ],
 
+    'reddit' => [
+        'client_id' => env('REDDIT_KEY'),
+        'client_secret' => env('REDDIT_SECRET'),
+        'redirect' => env('REDDIT_REDIRECT_URI')
+    ],
+
 ];
